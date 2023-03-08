@@ -5,11 +5,13 @@ import java.awt.event.MouseListener;
 
 public class Bakgrund extends JPanel implements MouseListener {
     //Attrib
-    final int SIZE =400;
-    private boolean firstcolor= false;
+    final int SIZE =200;
+    Window myWindow;
     //constr
-    public Bakgrund(){
-        this.setBackground(Color.BLACK);
+    public Bakgrund(Window window){
+        myWindow = window;
+        this.setBackground(Color.WHITE);
+        this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 5));
         this.setPreferredSize(new Dimension(SIZE,SIZE));
         this.addMouseListener(this);
 
@@ -22,7 +24,7 @@ public class Bakgrund extends JPanel implements MouseListener {
     @Override
     public void mouseClicked(MouseEvent e) {
         System.out.println("YOU HAVE CLICKED!");
-        if (!firstcolor) {
+        if (myWindow.isBlue()) {
             this.setBackground(Color.CYAN);
             //firstcolor=false;
         } else{
@@ -30,9 +32,7 @@ public class Bakgrund extends JPanel implements MouseListener {
             //firstcolor=true;
         }
 
-        firstcolor= !firstcolor;
-
-
+        myWindow.setBlue();
         repaint();
 
     }
